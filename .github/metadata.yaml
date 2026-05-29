@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+description: "Boolean algebra witnesses — Bool's monoid, semiring, and semilattice structure."
+topics:
+  - primitives
+  - algebra
+  - bool
+homepage: "https://swift-institute.org"
+readme:
+  family: E
