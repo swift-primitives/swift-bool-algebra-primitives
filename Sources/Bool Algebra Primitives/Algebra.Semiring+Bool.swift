@@ -9,11 +9,11 @@ public import Algebra_Semiring_Primitives
 /// - Multiplication: AND (conjunction), identity: true
 /// - Distributivity: a AND (b OR c) = (a AND b) OR (a AND c)
 /// - Zero annihilation: false AND a = false
-extension Algebra.Semiring where Element == Bool {
-    /// The Boolean OR/AND semiring.
+extension Algebra.Semiring.Commutative where Element == Bool {
+    /// The Boolean OR/AND commutative semiring on `Bool`: addition is OR (zero `false`), multiplication is AND (one `true`).
     @inlinable
-    public static var boolean: Algebra.Semiring<Bool>.Commutative {
-        .init(
+    public init() {
+        self.init(
             semiring: .init(
                 additive: .init(monoid: .init(identity: false, combining: { $0 || $1 })),
                 multiplicative: .init(identity: true, combining: { $0 && $1 })
