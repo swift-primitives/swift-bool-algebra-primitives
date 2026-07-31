@@ -1,17 +1,22 @@
 import Bool_Algebra_Primitives
 import Testing
 
-@Suite("Bool Algebra")
-struct BoolAlgebraTests {
-    @Suite struct Monoid {}
-    @Suite struct Semiring {}
-    @Suite struct Semilattice {}
-    @Suite struct Lattice {}
+@Suite struct `Bool Algebra Tests` {
+    @Suite struct Unit {
+        @Suite struct Monoid {}
+        @Suite struct Semiring {}
+        @Suite struct Semilattice {}
+        @Suite struct Lattice {}
+    }
+
+    @Suite struct `Edge Case` {}
+
+    @Suite struct Integration {}
 }
 
 // MARK: - Monoid
 
-extension BoolAlgebraTests.Monoid {
+extension `Bool Algebra Tests`.Unit.Monoid {
     @Test
     func `conjunction monoid has identity true and combines with AND`() {
         let m = Algebra.Monoid<Bool>.conjunction
@@ -33,7 +38,7 @@ extension BoolAlgebraTests.Monoid {
 
 // MARK: - Semiring
 
-extension BoolAlgebraTests.Semiring {
+extension `Bool Algebra Tests`.Unit.Semiring {
     @Test
     func `boolean semiring zero is false and one is true`() {
         let sr = Algebra.Semiring<Bool>.Commutative()
@@ -53,7 +58,7 @@ extension BoolAlgebraTests.Semiring {
 
 // MARK: - Semilattice
 
-extension BoolAlgebraTests.Semilattice {
+extension `Bool Algebra Tests`.Unit.Semilattice {
     @Test
     func `disjunction semilattice has identity false`() {
         let or = Algebra.Semilattice<Bool>.disjunction
@@ -88,7 +93,7 @@ extension BoolAlgebraTests.Semilattice {
 
 // MARK: - Lattice
 
-extension BoolAlgebraTests.Lattice {
+extension `Bool Algebra Tests`.Unit.Lattice {
     @Test
     func `bool lattice: join is OR, meet is AND`() {
         let l = Algebra.Lattice<Bool>()
@@ -125,7 +130,7 @@ extension BoolAlgebraTests.Lattice {
 // witness type — the lattice (`Algebra.Lattice<Bool>()`) plus `!` is the
 // Boolean algebra. These tests pin the complement laws against `Bool.!`.
 
-extension BoolAlgebraTests.Lattice {
+extension `Bool Algebra Tests`.Unit.Lattice {
     @Test
     func `bool complement laws via native ! over the bool lattice`() {
         let l = Algebra.Lattice<Bool>()
