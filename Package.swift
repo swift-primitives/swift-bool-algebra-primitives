@@ -1,15 +1,15 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
 let package = Package(
     name: "swift-bool-algebra-primitives",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(
@@ -22,7 +22,10 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-algebra-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-algebra-primitives.git",
+            branch: "main"
+        )
     ],
     targets: [
         // Bool's algebra witnesses — the existing tower structures instantiated
@@ -35,14 +38,17 @@ let package = Package(
             dependencies: [
                 .product(name: "Algebra Monoid Primitives", package: "swift-algebra-primitives"),
                 .product(name: "Algebra Semiring Primitives", package: "swift-algebra-primitives"),
-                .product(name: "Algebra Semilattice Primitives", package: "swift-algebra-primitives"),
+                .product(
+                    name: "Algebra Semilattice Primitives",
+                    package: "swift-algebra-primitives"
+                ),
                 .product(name: "Algebra Lattice Primitives", package: "swift-algebra-primitives"),
             ]
         ),
         .target(
             name: "Bool Algebra Primitives Test Support",
             dependencies: [
-                "Bool Algebra Primitives",
+                "Bool Algebra Primitives"
             ],
             path: "Tests/Support"
         ),
