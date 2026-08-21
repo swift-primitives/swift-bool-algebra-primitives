@@ -28,11 +28,7 @@ let package = Package(
         )
     ],
     targets: [
-        // Bool's algebra witnesses — the existing tower structures instantiated
-        // at `Element == Bool` (Monoid/Semiring/Semilattice via `&&`/`||`, and
-        // the bounded lattice `Algebra.Lattice<Bool>.bool`). There is NO separate
-        // `Algebra.Boolean` type: `Swift.Bool` IS the two-element Boolean algebra,
-        // extended directly; its complement is the native `!`.
+
         .target(
             name: "Bool Algebra Primitives",
             dependencies: [

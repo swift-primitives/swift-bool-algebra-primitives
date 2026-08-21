@@ -14,8 +14,6 @@ import Testing
     @Suite struct Integration {}
 }
 
-// MARK: - Monoid
-
 extension `Bool Algebra Tests`.Unit.Monoid {
     @Test
     func `conjunction monoid has identity true and combines with AND`() {
@@ -36,8 +34,6 @@ extension `Bool Algebra Tests`.Unit.Monoid {
     }
 }
 
-// MARK: - Semiring
-
 extension `Bool Algebra Tests`.Unit.Semiring {
     @Test
     func `boolean semiring zero is false and one is true`() {
@@ -55,8 +51,6 @@ extension `Bool Algebra Tests`.Unit.Semiring {
         #expect(sr.multiplying(true, false) == false)
     }
 }
-
-// MARK: - Semilattice
 
 extension `Bool Algebra Tests`.Unit.Semilattice {
     @Test
@@ -91,8 +85,6 @@ extension `Bool Algebra Tests`.Unit.Semilattice {
     }
 }
 
-// MARK: - Lattice
-
 extension `Bool Algebra Tests`.Unit.Lattice {
     @Test
     func `bool lattice: join is OR, meet is AND`() {
@@ -122,21 +114,13 @@ extension `Bool Algebra Tests`.Unit.Lattice {
     }
 }
 
-// MARK: - Bool as a Boolean algebra (no wrapper type — Swift.Bool extended directly)
-//
-// `Swift.Bool` IS the two-element Boolean algebra: join = `||` (the disjunction
-// semilattice), meet = `&&` (the conjunction semilattice), bottom = `false`,
-// top = `true`, and complement = the native `!`. There is no `Algebra.Boolean`
-// witness type — the lattice (`Algebra.Lattice<Bool>()`) plus `!` is the
-// Boolean algebra. These tests pin the complement laws against `Bool.!`.
-
 extension `Bool Algebra Tests`.Unit.Lattice {
     @Test
     func `bool complement laws via native ! over the bool lattice`() {
         let l = Algebra.Lattice<Bool>()
         for a in [false, true] {
-            #expect(l.join(a, !a) == l.top)  // a ∨ ¬a = ⊤
-            #expect(l.meet(a, !a) == l.bottom)  // a ∧ ¬a = ⊥
+            #expect(l.join(a, !a) == l.top)
+            #expect(l.meet(a, !a) == l.bottom)
         }
     }
 
